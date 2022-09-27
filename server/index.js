@@ -5,8 +5,8 @@ import bodyParser from 'body-parser';
 //routers from db
 // import db from "./db/DbConnection.js";
 import speciesRouter from "./routes/species.js";
-import sightingsRouter from "./routes/sightings";
-import individualsRouter from "./routes/individuals";
+import sightingsRouter from "./routes/sightings.js";
+import individualsRouter from "./routes/individuals.js";
 
 const app = express();
 const PORT = 4040;
