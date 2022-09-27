@@ -3,7 +3,7 @@ import cors from "cors";
 import bodyParser from 'body-parser';
 
 //routers from db
-import db from "./db/DbConnection.js";
+// import db from "./db/DbConnection.js";
 import speciesRouter from "./routes/species.js";
 import sightingsRouter from "./routes/sightings";
 import individualsRouter from "./routes/individuals";
