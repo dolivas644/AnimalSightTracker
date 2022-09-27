@@ -4,7 +4,7 @@ import React from "react";
 const IndividualsInfo = () =>{
     const [individuals, setIndividuals] = useState([]);
     
-    //get species data table
+    //get individuals data table
     const getIndividuals = async () =>{
         const response = await fetch(
             `http://localhost:4040/individuals`

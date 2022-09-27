@@ -4,7 +4,7 @@ import React from "react";
 const SightingsInfo = () =>{
     const [sightings, setSightings] = useState([]);
     
-    //get species data table
+    //get sightings data table
     const getSightings = async () =>{
         const response = await fetch(
             `http://localhost:4040/sightings`
