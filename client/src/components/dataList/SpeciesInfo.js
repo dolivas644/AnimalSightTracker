@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import React from "react";
 
 const SpeciesInfo = () =>{
-    const [species, setSpecies] = useState('');
+    const [species, setSpecies] = useState([]);
     
     //get species data table
     const getSpecies = async () =>{
