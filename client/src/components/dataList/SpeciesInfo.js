@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import React from "react";
 import { useReducer } from "react";
+// import DeleteSpecies from "./DeleteSpecies";
+import deleteIcon from "./deleteIcon.png"
 
 // create useReducer for changing values
 const reducer = (state, action) => {
@@ -84,6 +86,17 @@ const SpeciesInfo = () => {
         setSpecies([...species, content])
         dispatch({ type: 'clearForm' });
     }
+
+    //delete specie handler
+    const handleDeleteSpecie = async(deleteId) =>{
+        const response = await fetch(`http://localhost:4040/species/${deleteId}`,{
+            method: 'DELETE',
+        })
+        await response.json();
+        const deleteSpecieFunction = species.filter((specie) => specie.id !== deleteId);
+        setSpecies(deleteSpecieFunction);
+    };
+
     return (
         <>
             <header> Species Data Table </header>
@@ -106,6 +119,7 @@ const SpeciesInfo = () => {
                                 <td>{specie.population}</td>
                                 <td>{specie.conservation_status}</td>
                                 <td>{specie.created_on}</td>
+                                <td><img src={deleteIcon} alt="trash" onClick={() => handleDeleteSpecie(specie.id)}></img></td>
                             </tr>
                         )
                     })}

@@ -38,4 +38,16 @@ router.post('/', async (req, res) => {
   }
 })
 
+//delete request
+router.delete("/:id", async (req, res) =>{
+  const speciesId = req.params.id;
+  try{
+    await db.none("DELETE FROM species WHERE id=$1", [speciesId]);
+    res.send({status: "sucess"});
+  }
+  catch(e){
+    return res.status(400).json({e});
+  }
+});
+
 export default router;
