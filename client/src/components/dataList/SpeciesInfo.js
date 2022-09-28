@@ -46,7 +46,7 @@ const SpeciesInfo = () => {
     useEffect(() => {
         getSpecies();
     }, []);
-    
+
     //initialistate of the form will be empty
     const initialState = {
         id: "",
@@ -72,7 +72,7 @@ const SpeciesInfo = () => {
             created_on: state.created_on
         }
         console.log(newSpecie);
-        const response = await fetch('http://localhost:4040/species',{
+        const response = await fetch('http://localhost:4040/species', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -82,7 +82,7 @@ const SpeciesInfo = () => {
         });
         const content = await response.json();
         setSpecies([...species, content])
-        dispatch({type:'clearForm'});
+        dispatch({ type: 'clearForm' });
     }
     return (
         <>
@@ -112,6 +112,8 @@ const SpeciesInfo = () => {
                 </tbody>
             </table>
             <div className="addSpecies">
+            <header>Add a new Species</header>
+                <br></br>
                 <form id="add-species" action="#" onSubmit={handleAddSpecie}>
                     <fieldset>
                         <br></br>

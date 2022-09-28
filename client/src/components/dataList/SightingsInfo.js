@@ -22,42 +22,42 @@ const reducer = (state, action) => {
 
         case 'editEmail':
             return { ...state, email: action.payload };
-            case 'editIndividualId':
-                return { ...state, individual_id: action.payload };
+        case 'editIndividualId':
+            return { ...state, individual_id: action.payload };
         case 'editCreatedOn':
             return { ...state, created_on: action.payload };
         case 'clearForm':
-            return { id: "" , date_time: '', location: '',  healthy: '', email: '',individual_id:'', created_on: '' };
+            return { id: "", date_time: '', location: '', healthy: '', email: '', individual_id: '', created_on: '' };
         default:
             return state;
     }
 };
 
-const SightingsInfo = () =>{
+const SightingsInfo = () => {
     const [sightings, setSightings] = useState([]);
-    
+
     //get sightings data table
-    const getSightings = async () =>{
+    const getSightings = async () => {
         const response = await fetch(
             `http://localhost:4040/sightings`
         );
         const sighting = await response.json();
-        console.log(sighting );
-        setSightings(sighting );
+        console.log(sighting);
+        setSightings(sighting);
     };
 
     useEffect(() => {
         getSightings();
     }, []);
 
-       //initialistate of the form will be empty
-       const initialState = {
+    //initialistate of the form will be empty
+    const initialState = {
         id: "",
         date_time: '',
         location: '',
         healthy: '',
         email: '',
-        individual_id:'',
+        individual_id: '',
         created_on: ''
     };
 
@@ -77,7 +77,7 @@ const SightingsInfo = () =>{
             created_on: state.created_on
         }
         console.log(newSighting);
-        const response = await fetch('http://localhost:4040/sightings',{
+        const response = await fetch('http://localhost:4040/sightings', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -87,39 +87,41 @@ const SightingsInfo = () =>{
         });
         const content = await response.json();
         setSightings([...sightings, content])
-        dispatch({type:'clearForm'});
+        dispatch({ type: 'clearForm' });
     }
-    return(
-<>
-<header> Sightings Data Table </header>
-<table>
-    <thead>
-        <th>ID: </th>
-        <th>Date Time:  </th>
-        <th>Location: </th>
-        <th>Healthy: </th>
-        <th>Email: </th>
-        <th>Individual ID: </th>
-        <th>Created On: </th>
-    </thead>
-    <tbody>
-    {sightings.map((sighting, index) => {
-        return(
-        <tr key={index}>
-<td>{sighting.id}</td>
-<td>{sighting.date_time}</td>
-<td>{sighting.location}</td>
-<td>{sighting.healthy}</td>
-<td>{sighting.email}</td>
-<td>{sighting.individual_id}</td>
-<td>{sighting.created_on}</td>
-        </tr>
-   ) 
-   })}
-   </tbody>
-</table>
+    return (
+        <>
+            <header> Sightings Data Table </header>
+            <table>
+                <thead>
+                    <th>ID: </th>
+                    <th>Date Time:  </th>
+                    <th>Location: </th>
+                    <th>Healthy: </th>
+                    <th>Email: </th>
+                    <th>Individual ID: </th>
+                    <th>Created On: </th>
+                </thead>
+                <tbody>
+                    {sightings.map((sighting, index) => {
+                        return (
+                            <tr key={index}>
+                                <td>{sighting.id}</td>
+                                <td>{sighting.date_time}</td>
+                                <td>{sighting.location}</td>
+                                <td>{sighting.healthy}</td>
+                                <td>{sighting.email}</td>
+                                <td>{sighting.individual_id}</td>
+                                <td>{sighting.created_on}</td>
+                            </tr>
+                        )
+                    })}
+                </tbody>
+            </table>
 
-<div className="addSightings">
+            <div className="addSightings">
+                <header>Add a new Sighting</header>
+                <br></br>
                 <form id="add-sightings" action="#" onSubmit={handleAddSighting}>
                     <fieldset>
                         <br></br>
@@ -233,7 +235,7 @@ const SightingsInfo = () =>{
                     <input type="submit" />
                 </form>
             </div>
-</>
+        </>
     );
 }
 export default SightingsInfo;

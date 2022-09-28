@@ -21,7 +21,7 @@ const reducer = (state, action) => {
             return { ...state, seen_on: action.payload };
 
         case 'clearForm':
-            return { id: "", nick_name: '', species_id: '', seen_on: ''};
+            return { id: "", nick_name: '', species_id: '', seen_on: '' };
         default:
             return state;
     }
@@ -46,8 +46,8 @@ const IndividualsInfo = () => {
     }, []);
 
 
-       //initialistate of the form will be empty
-       const initialState = {
+    //initialistate of the form will be empty
+    const initialState = {
         id: "",
         nick_name: '',
         species_id: '',
@@ -67,7 +67,7 @@ const IndividualsInfo = () => {
             seen_on: state.seen_on,
         }
         console.log(newIndividual);
-        const response = await fetch('http://localhost:4040/individuals',{
+        const response = await fetch('http://localhost:4040/individuals', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -77,7 +77,7 @@ const IndividualsInfo = () => {
         });
         const content = await response.json();
         setIndividuals([...individuals, content])
-        dispatch({type:'clearForm'});
+        dispatch({ type: 'clearForm' });
     }
 
     return (
@@ -105,6 +105,8 @@ const IndividualsInfo = () => {
             </table>
 
             <div className="addIndividuals">
+            <header>Add a new Individual</header>
+                <br></br>
                 <form id="add-individuals" action="#" onSubmit={handleAddIndividual}>
                     <fieldset>
                         <br></br>
