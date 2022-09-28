@@ -46,6 +46,7 @@ const SpeciesInfo = () => {
     useEffect(() => {
         getSpecies();
     }, []);
+    
     //initialistate of the form will be empty
     const initialState = {
         id: "",
