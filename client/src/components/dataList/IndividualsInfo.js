@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import React from "react";
 import { useReducer } from "react";
+import deleteIcon from "./deleteIcon.png";
 
 // create useReducer for changing values
 const reducer = (state, action) => {
@@ -80,6 +81,16 @@ const IndividualsInfo = () => {
         dispatch({ type: 'clearForm' });
     }
 
+            //delete individual handler
+            const handleDeleteIndividual = async(deleteId) =>{
+                const response = await fetch(`http://localhost:4040/individuals/${deleteId}`,{
+                    method: 'DELETE',
+                })
+                await response.json();
+                const deleteIndividualFunction = individuals.filter((individual) => individual.id !== deleteId);
+                setIndividuals(deleteIndividualFunction);
+            };
+
     return (
         <>
             <header> Individuals Data Table </header>
@@ -98,6 +109,7 @@ const IndividualsInfo = () => {
                                 <td>{individual.nick_name}</td>
                                 <td>{individual.seen_on}</td>
                                 <td>{individual.species_id}</td>
+                                <td><img src={deleteIcon} alt="trash" onClick={() => handleDeleteIndividual(individual.id)}></img></td>
                             </tr>
                         )
                     })}

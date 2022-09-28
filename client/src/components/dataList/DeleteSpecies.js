@@ -1,7 +1,6 @@
 import { useState } from "react";
-
-//pass the function deleteUser as a prop(function comes from Users) 
-const DeleteSpecie = ({deleteSpecieCallback: handleDeleteSpecie}) => {
+ 
+const DeleteSpecie = ({handleDeleteSpecie}) => {
 
     //stores the specieID that will be deleted
     const [deleteSpecieId, setDeleteSpecieId] =useState('');
@@ -18,7 +17,7 @@ const DeleteSpecie = ({deleteSpecieCallback: handleDeleteSpecie}) => {
             <h3>Delete Specie</h3>
             <form id="delete-specie" action="#" onSubmit={handleDeleteSpecie}>
                 <fieldset>
-                    <label>Event ID</label>
+                    <label>Species ID</label>
                     <input type="number"
                      id="delete-specie-id" 
                      value={deleteSpecieId}
