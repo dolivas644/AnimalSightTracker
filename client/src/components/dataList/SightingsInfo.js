@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import React from "react";
 import { useReducer } from "react";
+import deleteIcon from "./deleteIcon.png";
 
 // create useReducer for changing values
 const reducer = (state, action) => {
@@ -89,6 +90,16 @@ const SightingsInfo = () => {
         setSightings([...sightings, content])
         dispatch({ type: 'clearForm' });
     }
+
+        //delete sighting handler
+        const handleDeleteSighting = async(deleteId) =>{
+            const response = await fetch(`http://localhost:4040/sightings/${deleteId}`,{
+                method: 'DELETE',
+            })
+            await response.json();
+            const deleteSightingFunction = sightings.filter((sighting) => sighting.id !== deleteId);
+            setSightings(deleteSightingFunction);
+        };
     return (
         <>
             <header> Sightings Data Table </header>
@@ -113,6 +124,7 @@ const SightingsInfo = () => {
                                 <td>{sighting.email}</td>
                                 <td>{sighting.individual_id}</td>
                                 <td>{sighting.created_on}</td>
+                                <td><img src={deleteIcon} alt="trash" onClick={() => handleDeleteSighting(sighting.id)}></img></td>
                             </tr>
                         )
                     })}
