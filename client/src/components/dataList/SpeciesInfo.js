@@ -96,10 +96,15 @@ const SpeciesInfo = () => {
         const deleteSpecieFunction = species.filter((specie) => specie.id !== deleteId);
         setSpecies(deleteSpecieFunction);
     };
-
+const [searchTerm, setSearchTerm]=useState('');
     return (
         <>
             <header> Species Data Table </header>
+            <br></br>
+            <input type="text"
+            placeholder="Search..."
+            className="search"
+            onChange={(e) => setSearchTerm(e.target.value)} />
             <table>
                 <thead>
                     <th>ID: </th>
@@ -110,7 +115,23 @@ const SpeciesInfo = () => {
                     <th>Created On: </th>
                 </thead>
                 <tbody>
-                    {species.map((specie, index) => {
+                    {species.filter((val)=>{
+                        if(searchTerm ==''){
+                            return val;
+                        }else if(val.common_name.toLowerCase().includes(searchTerm.toLowerCase())){
+                            return val
+                        }else if(val.scientific_name.toLowerCase().includes(searchTerm.toLowerCase())){
+                            return val
+                        }else if(val.population.toString().includes(searchTerm.toString())){
+                            return val
+                        }else if(val.conservation_status.toLowerCase().includes(searchTerm.toLowerCase())){
+                            return val
+                        }else if(val.created_on.toString().includes(searchTerm.toLowerCase())){
+                            return val
+                        }else if(val.id.toString().includes(searchTerm.toString())){
+                            return val
+                        }
+                    }).map((specie, index) => {
                         return (
                             <tr key={index}>
                                 <td>{specie.id}</td>
