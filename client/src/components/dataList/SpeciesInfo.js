@@ -3,8 +3,8 @@ import React from "react";
 import { useReducer } from "react";
 // import DeleteSpecies from "./DeleteSpecies";
 import deleteIcon from "./deleteIcon.png"
-
 // create useReducer for changing values
+
 const reducer = (state, action) => {
     console.log(action, 'this is the action');
     switch (action.type) {
