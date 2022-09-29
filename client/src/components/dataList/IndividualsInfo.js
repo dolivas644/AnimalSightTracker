@@ -114,11 +114,11 @@ const IndividualsInfo = () => {
                             return val;
                         }else if(val.nick_name.toLowerCase().includes(searchTerm.toLowerCase())){
                             return val
-                        }else if(val.seen_on.toString().includes(searchTerm.toString())){
+                        }else if(val.seen_on.toString().toLowerCase().includes(searchTerm.toString().toLowerCase())){
                             return val
-                        }else if(val.species_id.toString().includes(searchTerm.toLowerCase())){
+                        }else if(val.species_id.toString().toLowerCase().includes(searchTerm.toString().toLowerCase())){
                             return val
-                        }else if(val.id.toString().includes(searchTerm.toString())){
+                        }else if(val.id.toString().toLowerCase().includes(searchTerm.toString().toLowerCase())){
                             return val
                         }
                     }).map((individual, index) => {

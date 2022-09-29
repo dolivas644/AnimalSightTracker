@@ -7,6 +7,7 @@ import bodyParser from 'body-parser';
 import speciesRouter from "./routes/species.js";
 import sightingsRouter from "./routes/sightings.js";
 import individualsRouter from "./routes/individuals.js";
+import joinedRouter from "./routes/joined.js"
 
 const app = express();
 const PORT = 4040;
@@ -17,6 +18,7 @@ app.use(bodyParser.json())
 app.use("/species", speciesRouter);
 app.use("/sightings", sightingsRouter);
 app.use("/individuals", individualsRouter);
+app.use("/joined", joinedRouter)
 
 
 app.get('/', function (req, res,) {
