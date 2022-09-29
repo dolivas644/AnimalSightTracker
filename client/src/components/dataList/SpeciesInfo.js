@@ -4,6 +4,7 @@ import { useReducer } from "react";
 // import DeleteSpecies from "./DeleteSpecies";
 import deleteIcon from "./deleteIcon.png"
 // create useReducer for changing values
+import EditSpecies from "./edit/EditSpecies";
 
 const reducer = (state, action) => {
     console.log(action, 'this is the action');
@@ -97,6 +98,34 @@ const SpeciesInfo = () => {
         setSpecies(deleteSpecieFunction);
     };
 const [searchTerm, setSearchTerm]=useState('');
+
+const [editSpecieId,setEditSpecieId] = useState(null);
+
+const updateSpecie = (savedSpecie) =>{
+    console.log("Line 29 savedStudent", savedSpecie);
+    // This function should update the whole list of students - 
+    setSpecies((species) => {
+      const newArraySpecies = [];
+      for(let specie of species){
+        if(specie.id === savedSpecie.id){
+          newArraySpecies.push(savedSpecie);
+        } else {
+          newArraySpecies.push(specie);
+        }
+      }
+      return newArraySpecies;
+    })
+    // This line is only to close the form;
+    setEditSpecieId(null);
+  }
+  
+  const onEdit = (specie) =>{
+    console.log("This is line 26 on student component", specie);
+    const editingID = specie.id;
+    console.log("Just the student id", specie.id)
+    setEditSpecieId(editingID);
+
+  }
     return (
         <>
             <header> Species Data Table </header>
@@ -133,6 +162,9 @@ const [searchTerm, setSearchTerm]=useState('');
                             return val
                         }
                     }).map((specie, index) => {
+                        if(specie.id ===editSpecieId){
+                            return <EditSpecies initialSpecie={specie} saveSpecie={updateSpecie} />
+                        }else{
                         return (
                             <tr key={index}>
                                 <td>{specie.id}</td>
@@ -142,8 +174,10 @@ const [searchTerm, setSearchTerm]=useState('');
                                 <td>{specie.conservation_status}</td>
                                 <td>{specie.created_on}</td>
                                 <td><img src={deleteIcon} alt="trash" onClick={() => handleDeleteSpecie(specie.id)}></img></td>
+                                <td><button type="button" onClick={() => {onEdit(specie)}}>Edit</button></td>        
                             </tr>
                         )
+                        }
                     })}
                 </tbody>
             </table>
