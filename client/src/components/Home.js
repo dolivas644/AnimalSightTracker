@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
+import css from "../App.css";
+import HomeCss from "./HomeCss.css"
 
 const Home = () => {
     const [joins, setJoins] = useState([]);
@@ -22,7 +24,6 @@ const Home = () => {
 
     return (
         <>
-            <header> Animal Sighting Tracker</header>
             <header> List all Sightings of Individuals Data Table </header>
             <br></br>
             <input type="text"

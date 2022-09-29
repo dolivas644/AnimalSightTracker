@@ -128,7 +128,7 @@ const IndividualsInfo = () => {
                                 <td>{individual.nick_name}</td>
                                 <td>{individual.seen_on}</td>
                                 <td>{individual.species_id}</td>
-                                <td><img src={deleteIcon} alt="trash" onClick={() => handleDeleteIndividual(individual.id)}></img></td>
+                                <td><img src={deleteIcon} className="trash" alt="trash" onClick={() => handleDeleteIndividual(individual.id)}></img></td>
                             </tr>
                         )
                     })}

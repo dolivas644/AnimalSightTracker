@@ -1,4 +1,23 @@
 .App {
   text-align: center;
   color:black;
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }
+
+table ,td, th{
+  
+  align-items: center;
+  text-align: center;
+border: 1px solid #ddd;
+padding: 8px;
+}
+
+tr:nth-child(even){
+  background-color: gainsboro;
+}
+tr:hover{
+  background-color: gray;
+}
+
