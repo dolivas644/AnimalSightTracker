@@ -90,10 +90,17 @@ const IndividualsInfo = () => {
                 const deleteIndividualFunction = individuals.filter((individual) => individual.id !== deleteId);
                 setIndividuals(deleteIndividualFunction);
             };
+            const [searchTerm, setSearchTerm]=useState('');
 
     return (
         <>
             <header> Individuals Data Table </header>
+            <br></br>
+            <input type="text"
+            placeholder="Search..."
+            className="search"
+            onChange={(e) => setSearchTerm(e.target.value)} />
+            <br></br>
             <table>
                 <thead>
                     <th>ID: </th>
@@ -102,7 +109,19 @@ const IndividualsInfo = () => {
                     <th>Species ID: </th>
                 </thead>
                 <tbody>
-                    {individuals.map((individual, index) => {
+                    {individuals.filter((val)=>{
+                        if(searchTerm === ''){
+                            return val;
+                        }else if(val.nick_name.toLowerCase().includes(searchTerm.toLowerCase())){
+                            return val
+                        }else if(val.seen_on.toString().includes(searchTerm.toString())){
+                            return val
+                        }else if(val.species_id.toString().includes(searchTerm.toLowerCase())){
+                            return val
+                        }else if(val.id.toString().includes(searchTerm.toString())){
+                            return val
+                        }
+                    }).map((individual, index) => {
                         return (
                             <tr key={index}>
                                 <td>{individual.id}</td>

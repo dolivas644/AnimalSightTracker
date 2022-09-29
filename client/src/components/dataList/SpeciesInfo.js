@@ -105,6 +105,7 @@ const [searchTerm, setSearchTerm]=useState('');
             placeholder="Search..."
             className="search"
             onChange={(e) => setSearchTerm(e.target.value)} />
+             <br></br>
             <table>
                 <thead>
                     <th>ID: </th>
@@ -116,7 +117,7 @@ const [searchTerm, setSearchTerm]=useState('');
                 </thead>
                 <tbody>
                     {species.filter((val)=>{
-                        if(searchTerm ==''){
+                        if(searchTerm === ''){
                             return val;
                         }else if(val.common_name.toLowerCase().includes(searchTerm.toLowerCase())){
                             return val

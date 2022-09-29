@@ -100,9 +100,17 @@ const SightingsInfo = () => {
             const deleteSightingFunction = sightings.filter((sighting) => sighting.id !== deleteId);
             setSightings(deleteSightingFunction);
         };
+        const [searchTerm, setSearchTerm]=useState('');
+
     return (
         <>
             <header> Sightings Data Table </header>
+            <br></br>
+            <input type="text"
+            placeholder="Search..."
+            className="search"
+            onChange={(e) => setSearchTerm(e.target.value)} />
+             <br></br>
             <table>
                 <thead>
                     <th>ID: </th>
@@ -114,7 +122,23 @@ const SightingsInfo = () => {
                     <th>Created On: </th>
                 </thead>
                 <tbody>
-                    {sightings.map((sighting, index) => {
+                    {sightings.filter((val)=>{
+                        if(searchTerm === ''){
+                            return val;
+                        }else if(val.id.toString().includes(searchTerm.toString())){
+                            return val
+                        }else if(val.date_time.toString().includes(searchTerm.toString())){
+                            return val
+                        }else if(val.location.toLowerCase().includes(searchTerm.toLowerCase())){
+                            return val
+                        }else if(val.email.toLowerCase().includes(searchTerm.toLowerCase())){
+                            return val
+                        }else if(val.individual_id.toString().includes(searchTerm.toString())){
+                            return val
+                        }else if(val.created_on.toString().includes(searchTerm.toLowerCase())){
+                            return val
+                        }
+                    }).map((sighting, index) => {
                         return (
                             <tr key={index}>
                                 <td>{sighting.id}</td>
