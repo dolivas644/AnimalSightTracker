@@ -137,6 +137,8 @@ const SightingsInfo = () => {
                             return val
                         }else if(val.created_on.toString().includes(searchTerm.toLowerCase())){
                             return val
+                        }else if(val.healthy.toString().toLowerCase().includes(searchTerm.toString().toLowerCase())){
+                            return val
                         }
                     }).map((sighting, index) => {
                         return (
@@ -144,7 +146,7 @@ const SightingsInfo = () => {
                                 <td>{sighting.id}</td>
                                 <td>{sighting.date_time}</td>
                                 <td>{sighting.location}</td>
-                                <td>{sighting.healthy}</td>
+                                <td>{sighting.healthy === true ? "true" : "false"}</td>
                                 <td>{sighting.email}</td>
                                 <td>{sighting.individual_id}</td>
                                 <td>{sighting.created_on}</td>
