@@ -102,7 +102,7 @@ const handleCreatedOnChange = (e) =>{
                             type="number"
                             id="add-specie-population"
                             placeholder="number"
-                            value={specie.scientific_name}
+                            value={specie.population}
                             onChange={handlePopulationChange}
                         />
                         <label>Conservation Status: </label>
