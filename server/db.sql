@@ -20,9 +20,9 @@ SET default_tablespace = '';
 
 SET default_table_access_method = heap;
 
-
-Name: individuals; Type: TABLE; Schema: public; Owner: tpl522_3
-
+--
+-- Name: individuals; Type: TABLE; Schema: public; Owner: tpl522_3
+--
 
 CREATE TABLE public.individuals (
     id integer NOT NULL,
@@ -225,7 +225,7 @@ COPY public.species (id, common_name, scientific_name, population, conservation_
 8	American beaver	Castor canadensis	257	CE	2021-07-21 00:00:00-07
 9	European badger	Meles meles	9	CE	2021-08-13 00:00:00-07
 10	Scaly-breasted lorikeet	Trichoglossus chlorolepidotus	919	CE	2021-05-15 00:00:00-07
-1	Leo, indian	P pardus	500	CE	2022-01-21 00:00:00-08
+1	Lo, indian	P dus	50	CE	2022-01-21 00:00:00-08
 \.
 
 
