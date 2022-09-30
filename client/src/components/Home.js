@@ -7,20 +7,23 @@ const Home = () => {
     const [joins, setJoins] = useState([]);
 
     //get joined data table
-    const getJoins = async () => {
-        const response = await fetch(
-            `http://localhost:4040/joined`
-        );
+    const getJoins = async (searchTerm = null) => {
+        let url = `http://localhost:4040/joined`;
+
+        console.log('search term ', searchTerm);
+        if (searchTerm) {
+            url = url + `?q=${searchTerm}`;
+            console.log('url ', url);
+        }
+        const response = await fetch(url);
         const join = await response.json();
-        console.log(join);
         setJoins(join);
     };
+    const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
-        getJoins();
-    }, []);
-
-    const [searchTerm, setSearchTerm] = useState('');
+        getJoins(searchTerm);
+    }, [searchTerm]);
 
     return (
         <>
@@ -45,29 +48,7 @@ const Home = () => {
                     <td> Species Id:</td >
                 </thead >
                 <tbody>
-                    {joins.filter((val) => {
-                        if (searchTerm === '') {
-                            return val;
-                        } else if (val.location.toString().toLowerCase().includes(searchTerm.toLowerCase())) {
-                            return val
-                        } else if (val.email.toLowerCase().includes(searchTerm.toLowerCase())) {
-                            return val
-                        } else if (val.date_time.toString().toLowerCase().includes(searchTerm.toLowerCase())) {
-                            return val
-                        } else if (val.nick_name.toLowerCase().includes(searchTerm.toLowerCase())) {
-                            return val
-                        } else if (val.created_on.toString().toLowerCase().includes(searchTerm.toLowerCase())) {
-                            return val
-                        } else if (val.id.toString().includes(searchTerm.toString())) {
-                            return val
-                        } else if (val.seen_on.toString().toLowerCase().includes(searchTerm.toLowerCase())) {
-                            return val
-                        } else if (val.healthy.toString().toLowerCase().includes(searchTerm.toLowerCase())) {
-                            return val
-                        } else if (val.species_id.toString().toLowerCase().includes(searchTerm.toLowerCase())) {
-                            return val
-                        }
-                    }).map((join, index) => {
+                    {joins.map((join, index) => {
                         return (
                             <tr key={index}>
                                 <td>{join.id}</td>
