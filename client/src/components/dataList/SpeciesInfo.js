@@ -185,7 +185,7 @@ const SpeciesInfo = () => {
                     })}
                 </tbody>
             </table>
-            <EditSpecies saveSpecie={editSpecieId} />
+            <EditSpecies saveSpecie={addSpecie} />
             <div className="addSpecies">
                 <header>Add a new Species</header>
                 <br></br>
