@@ -47,18 +47,21 @@ Enter your new database
 ```\c animal_sight_tracker```
 
 Create a table (follow this step for creating your Species, Sightings, and Individuals table)
-```CREATE TABLE species (
-	id SERIAL PRIMARY KEY,
-	common_name VARCHAR ( 50 ) UNIQUE NOT NULL,
-	scientific_name VARCHAR ( 50 ) NOT NULL,
-	population integer,
-    conservation_status VARCHAR (2),
-	created_on TIMESTAMP WITH TIME zone DEFAULT CURRENT_TIMESTAMP 
-); ```
+```CREATE TABLE species (id SERIAL PRIMARY KEY,common_name VARCHAR ( 50 ) UNIQUE NOT NULL, scientific_name VARCHAR ( 50 ) NOT NULL, population integer, conservation_status VARCHAR (2), created_on TIMESTAMP WITH TIME zone DEFAULT CURRENT_TIMESTAMP ); ```
 
 Insert values into your table
 ```insert into species (common_name, scientific_name, population, conservation_status, created_on) values ('Leopard, indian', 'Panthera pardus', '500', 'US', '1/21/2022'); ```
 
 You can use the db.sql (pg_dump for reference to recreate database)
 
-##Starting your project
+#Starting your project
+
+##Navigate to the folder you want to clone the project
+
+In your terminal, enter the desired folder
+```cd Documents```
+
+Copy the git clone link from the git project
+``````
+
+
