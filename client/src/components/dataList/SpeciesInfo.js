@@ -89,52 +89,55 @@ const SpeciesInfo = () => {
     }
 
     //delete specie handler
-    const handleDeleteSpecie = async(deleteId) =>{
-        const response = await fetch(`http://localhost:4040/species/${deleteId}`,{
+    const handleDeleteSpecie = async (deleteId) => {
+        const response = await fetch(`http://localhost:4040/species/${deleteId}`, {
             method: 'DELETE',
         })
         await response.json();
         const deleteSpecieFunction = species.filter((specie) => specie.id !== deleteId);
         setSpecies(deleteSpecieFunction);
     };
-const [searchTerm, setSearchTerm]=useState('');
+    const [searchTerm, setSearchTerm] = useState('');
 
-const [editSpecieId,setEditSpecieId] = useState(null);
+    const [editSpecieId, setEditSpecieId] = useState(null);
 
-const updateSpecie = (savedSpecie) =>{
-    console.log("Line 29 savedStudent", savedSpecie);
-    // This function should update the whole list of students - 
-    setSpecies((species) => {
-      const newArraySpecies = [];
-      for(let specie of species){
-        if(specie.id === savedSpecie.id){
-          newArraySpecies.push(savedSpecie);
-        } else {
-          newArraySpecies.push(specie);
-        }
-      }
-      return newArraySpecies;
-    })
-    // This line is only to close the form;
-    setEditSpecieId(null);
-  }
-  
-  const onEdit = (specie) =>{
-    console.log("This is line 26 on student component", specie);
-    const editingID = specie.id;
-    console.log("Just the student id", specie.id)
-    setEditSpecieId(editingID);
+    const addSpecie = (newSpecie) => {
+        setSpecies((species) => [...species, newSpecie])
+    }
+    const updateSpecie = (savedSpecie) => {
+        console.log("Line 29 savedStudent", savedSpecie);
+        // This function should update the whole list of students - 
+        setSpecies((species) => {
+            const newArraySpecies = [];
+            for (let specie of species) {
+                if (specie.id === savedSpecie.id) {
+                    newArraySpecies.push(savedSpecie);
+                } else {
+                    newArraySpecies.push(specie);
+                }
+            }
+            return newArraySpecies;
+        })
+        // This line is only to close the form;
+        setEditSpecieId(null);
+    }
 
-  }
+    const onEdit = (specie) => {
+        console.log("This is line 26 on student component", specie);
+        const editingID = specie.id;
+        console.log("Just the student id", specie.id)
+        setEditSpecieId(editingID);
+
+    }
     return (
         <>
             <header> Species Data Table </header>
             <br></br>
             <input type="text"
-            placeholder="Search..."
-            className="search"
-            onChange={(e) => setSearchTerm(e.target.value)} />
-             <br></br>
+                placeholder="Search..."
+                className="search"
+                onChange={(e) => setSearchTerm(e.target.value)} />
+            <br></br>
             <table>
                 <thead>
                     <th>ID: </th>
@@ -145,44 +148,46 @@ const updateSpecie = (savedSpecie) =>{
                     <th>Created On: </th>
                 </thead>
                 <tbody>
-                    {species.filter((val)=>{
-                        if(searchTerm === ''){
+                    {species.filter((val) => {
+                        if (searchTerm === '') {
                             return val;
-                        }else if(val.common_name.toLowerCase().includes(searchTerm.toLowerCase())){
+                        } else if (val.common_name.toLowerCase().includes(searchTerm.toLowerCase())) {
                             return val
-                        }else if(val.scientific_name.toLowerCase().includes(searchTerm.toLowerCase())){
+                        } else if (val.scientific_name.toLowerCase().includes(searchTerm.toLowerCase())) {
                             return val
-                        }else if(val.population.toString().includes(searchTerm.toString())){
+                        } else if (val.population.toString().includes(searchTerm.toString())) {
                             return val
-                        }else if(val.conservation_status.toLowerCase().includes(searchTerm.toLowerCase())){
+                        } else if (val.conservation_status.toLowerCase().includes(searchTerm.toLowerCase())) {
                             return val
-                        }else if(val.created_on.toString().includes(searchTerm.toLowerCase())){
+                        } else if (val.created_on.toString().includes(searchTerm.toLowerCase())) {
                             return val
-                        }else if(val.id.toString().includes(searchTerm.toString())){
+                        } else if (val.id.toString().includes(searchTerm.toString())) {
                             return val
                         }
                     }).map((specie, index) => {
-                        if(specie.id ===editSpecieId){
+                        if (specie.id === editSpecieId) {
                             return <EditSpecies initialSpecie={specie} saveSpecie={updateSpecie} />
-                        }else{
-                        return (
-                            <tr key={index}>
-                                <td>{specie.id}</td>
-                                <td>{specie.common_name}</td>
-                                <td>{specie.scientific_name}</td>
-                                <td>{specie.population}</td>
-                                <td>{specie.conservation_status}</td>
-                                <td>{specie.created_on}</td>
-                                <td><img src={deleteIcon} alt="trash" onClick={() => handleDeleteSpecie(specie.id)}></img></td>
-                                <td><button type="button" onClick={() => {onEdit(specie)}}>Edit</button></td>        
-                            </tr>
-                        )
+
+                        } else {
+                            return (
+                                <tr key={index}>
+                                    <td>{specie.id}</td>
+                                    <td>{specie.common_name}</td>
+                                    <td>{specie.scientific_name}</td>
+                                    <td>{specie.population}</td>
+                                    <td>{specie.conservation_status}</td>
+                                    <td>{specie.created_on}</td>
+                                    <td><img src={deleteIcon} alt="trash" onClick={() => handleDeleteSpecie(specie.id)}></img></td>
+                                    <td><button type="button" onClick={() => { onEdit(specie) }}>Edit</button></td>
+                                </tr>
+                            )
                         }
                     })}
                 </tbody>
             </table>
+            <EditSpecies saveSpecie={editSpecieId} />
             <div className="addSpecies">
-            <header>Add a new Species</header>
+                <header>Add a new Species</header>
                 <br></br>
                 <form id="add-species" action="#" onSubmit={handleAddSpecie}>
                     <fieldset>

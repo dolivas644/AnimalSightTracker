@@ -14,13 +14,13 @@ const EditSpecies = (props) => {
 const [specie, setSpecie] = useState(initialSpecie);
 
 const handleCommonNameChange = (e) =>{
-    const commonname= e.target.value;
-    setSpecie((specie) => ({...specie, commonname}));
+    const common_name= e.target.value;
+    setSpecie((specie) => ({...specie, common_name}));
 };
 
 const handleScientificNameChange = (e) =>{
-    const scientificname= e.target.value;
-    setSpecie((specie) => ({...specie, scientificname}));
+    const scientific_name= e.target.value;
+    setSpecie((specie) => ({...specie, scientific_name}));
 };
 
 const handlePopulationChange = (e) =>{
@@ -29,19 +29,19 @@ const handlePopulationChange = (e) =>{
 };
 
 const handleConservationStatusChange = (e) =>{
-    const conservationStatus= e.target.value;
-    setSpecie((specie) => ({...specie, conservationStatus}));
+    const conservation_status= e.target.value;
+    setSpecie((specie) => ({...specie, conservation_status}));
 };
 
 const handleCreatedOnChange = (e) =>{
-    const createdOn= e.target.value;
-    setSpecie((specie) => ({...specie, createdOn}));
+    const created_on= e.target.value;
+    setSpecie((specie) => ({...specie, created_on}));
 };
 
 //put request
   //A function to handle the post request
   const postSpecie = (newSpecie) => {
-    return fetch("http://localhost:4040/speciess", {
+    return fetch("http://localhost:4040/species", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newSpecie),
@@ -73,11 +73,8 @@ const handleCreatedOnChange = (e) =>{
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(specie.id){
-      updateSpecie(specie);
-    } else{
       postSpecie(specie);
-    }
+    
     
   };
     return(

@@ -91,26 +91,26 @@ const SightingsInfo = () => {
         dispatch({ type: 'clearForm' });
     }
 
-        //delete sighting handler
-        const handleDeleteSighting = async(deleteId) =>{
-            const response = await fetch(`http://localhost:4040/sightings/${deleteId}`,{
-                method: 'DELETE',
-            })
-            await response.json();
-            const deleteSightingFunction = sightings.filter((sighting) => sighting.id !== deleteId);
-            setSightings(deleteSightingFunction);
-        };
-        const [searchTerm, setSearchTerm]=useState('');
+    //delete sighting handler
+    const handleDeleteSighting = async (deleteId) => {
+        const response = await fetch(`http://localhost:4040/sightings/${deleteId}`, {
+            method: 'DELETE',
+        })
+        await response.json();
+        const deleteSightingFunction = sightings.filter((sighting) => sighting.id !== deleteId);
+        setSightings(deleteSightingFunction);
+    };
+    const [searchTerm, setSearchTerm] = useState('');
 
     return (
         <>
             <header> Sightings Data Table </header>
             <br></br>
             <input type="text"
-            placeholder="Search..."
-            className="search"
-            onChange={(e) => setSearchTerm(e.target.value)} />
-             <br></br>
+                placeholder="Search..."
+                className="search"
+                onChange={(e) => setSearchTerm(e.target.value)} />
+            <br></br>
             <table>
                 <thead>
                     <th>ID: </th>
@@ -122,22 +122,22 @@ const SightingsInfo = () => {
                     <th>Created On: </th>
                 </thead>
                 <tbody>
-                    {sightings.filter((val)=>{
-                        if(searchTerm === ''){
+                    {sightings.filter((val) => {
+                        if (searchTerm === '') {
                             return val;
-                        }else if(val.id.toString().includes(searchTerm.toString())){
+                        } else if (val.id.toString().includes(searchTerm.toString())) {
                             return val
-                        }else if(val.date_time.toString().includes(searchTerm.toString())){
+                        } else if (val.date_time.toString().includes(searchTerm.toString())) {
                             return val
-                        }else if(val.location.toLowerCase().includes(searchTerm.toLowerCase())){
+                        } else if (val.location.toLowerCase().includes(searchTerm.toLowerCase())) {
                             return val
-                        }else if(val.email.toLowerCase().includes(searchTerm.toLowerCase())){
+                        } else if (val.email.toLowerCase().includes(searchTerm.toLowerCase())) {
                             return val
-                        }else if(val.individual_id.toString().includes(searchTerm.toString())){
+                        } else if (val.individual_id.toString().includes(searchTerm.toString())) {
                             return val
-                        }else if(val.created_on.toString().includes(searchTerm.toLowerCase())){
+                        } else if (val.created_on.toString().includes(searchTerm.toLowerCase())) {
                             return val
-                        }else if(val.healthy.toString().toLowerCase().includes(searchTerm.toString().toLowerCase())){
+                        } else if (val.healthy.toString().toLowerCase().includes(searchTerm.toString().toLowerCase())) {
                             return val
                         }
                     }).map((sighting, index) => {
