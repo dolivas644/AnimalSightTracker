@@ -13,6 +13,10 @@ const EditSpecies = (props) => {
 
 const [specie, setSpecie] = useState(initialSpecie);
 
+const handleIdChange = (e) =>{
+    const id= e.target.value;
+    setSpecie((specie) => ({...specie, id}));
+};
 const handleCommonNameChange = (e) =>{
     const common_name= e.target.value;
     setSpecie((specie) => ({...specie, common_name}));
@@ -81,6 +85,14 @@ const handleCreatedOnChange = (e) =>{
         <>
                 <form id="add-species" action="#" onSubmit={handleSubmit}>
                     <fieldset>
+                    <label>ID: </label>
+                        <input
+                            type="number"
+                            id="add-specie-population"
+                            placeholder="number"
+                            value={specie.id}
+                            onChange={handleIdChange}
+                        />
                         <label>Common Name: </label>
                         <input
                             type="text"
